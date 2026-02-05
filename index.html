@@ -15,3 +15,27 @@ layout: default
   
   <p style="font-style: italic; color: #666;">Isaiah 30:21-22</p>
 </div>
+
+<div style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+  <h2 style="text-align: center; margin-bottom: 30px;">Recent Posts</h2>
+  
+  {% if site.posts.size > 0 %}
+    <ul style="list-style: none; padding: 0;">
+      {% for post in site.posts %}
+        <li style="margin-bottom: 20px; padding: 15px; border: 1px solid #eee; border-radius: 5px;">
+          <h3 style="margin: 0 0 10px 0;">
+            <a href="{{ post.url | relative_url }}" style="text-decoration: none; color: #333;">{{ post.title | escape }}</a>
+          </h3>
+          <p style="margin: 0; color: #666; font-size: 0.9em;">
+            {{ post.date | date: "%B %d, %Y" }} • {{ post.categories | join: ", " }}
+          </p>
+          {% if post.excerpt %}
+            <p style="margin: 10px 0 0 0;">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p style="text-align: center; color: #666;">No posts yet.</p>
+  {% endif %}
+</div>

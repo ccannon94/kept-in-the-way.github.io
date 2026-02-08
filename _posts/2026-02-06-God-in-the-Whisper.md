@@ -21,6 +21,6 @@ _But God Almighty was not in the earthquake._
 
 Finally, you feel warmth spread across your face as the earth beneath your feet settles, and a pillar of fire descends on the mountain before you, hot and bright and seemingly full of divine power. The heat grows from gentle warmth to a slight discomfort and continues you climb. You begin to worry about every sinful thought that has ever crossed your mind, will the obvious and devouring power of God in the fire consume your sinful soul?
 
-_But God Almight was not in the fire._
+_But God Almighty was not in the fire._
 
 Then... a whisper.

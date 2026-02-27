@@ -2,12 +2,12 @@
 layout: post
 title: "Welcome"
 date: 2026-02-06 10:59:00 -0400
-tags: old-testament kings prophets 1kings18:13
+tags: old-testament kings prophets 1kings19 1kings19:11 1kings19:12 1kings19:13
 ---
 
 # God in the Whisper
 
-Imagine you know that you are going to encounter the almighty God of the universe, creator of heaven and earth.
+Imagine that you are going to encounter the almighty God of the universe, creator of heaven and earth.
 
 You don't know what to expect when the presence of God is before you on the mountaintop, so you're ready for anything.
 
@@ -24,3 +24,6 @@ Finally, you feel warmth spread across your face as the earth beneath your feet 
 _But God Almighty was not in the fire._
 
 Then... a whisper.
+
+When Elijah heard the whisper, he covers his face and steps out to the mouth of the cave he had been hiding in, and hears the voice of God ask _"What are you doing here, Elijah?"_
+

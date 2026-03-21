@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Welcome"
+title: "God in the Whisper"
 date: 2026-03-20 23:35:00 -0400
 tags: old-testament kings prophets 1kings19 1kings19:11 1kings19:12 1kings19:13
 ---

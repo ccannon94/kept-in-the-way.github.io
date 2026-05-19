@@ -1,0 +1,70 @@
+audit_city,city_size,total_unique_church_listings,facebook_website_links_found,percent_facebook_first,queries_completed,query_errors
+"Atlanta, GA",Large,1455,13,0.89%,222,0
+"Charlotte, NC",Large,1463,34,2.32%,222,0
+"Columbus, OH",Large,1027,23,2.24%,222,0
+"Denver, CO",Large,1087,11,1.01%,222,0
+"El Paso, TX",Large,673,35,5.20%,222,0
+"Indianapolis, IN",Large,1072,16,1.49%,222,0
+"Louisville, KY",Large,1011,23,2.27%,222,0
+"Memphis, TN",Large,1037,20,1.93%,222,0
+"Milwaukee, WI",Large,937,15,1.60%,222,0
+"Minneapolis, MN",Large,1044,6,0.57%,222,0
+"New Orleans, LA",Large,928,18,1.94%,222,0
+"Phoenix, AZ",Large,1198,13,1.09%,222,0
+"Pittsburgh, PA",Large,954,16,1.68%,222,0
+"Portland, OR",Large,972,13,1.34%,222,0
+"Richmond, VA",Large,1009,19,1.88%,222,0
+"Salt Lake City, UT",Large,793,18,2.27%,222,0
+"St. Louis, MO",Large,1084,19,1.75%,222,0
+"Tampa, FL",Large,1270,21,1.65%,222,0
+"Albuquerque, NM",Mid-size,653,11,1.68%,222,0
+"Baton Rouge, LA",Mid-size,974,21,2.16%,222,0
+"Birmingham, AL",Mid-size,983,14,1.42%,222,0
+"Boise, ID",Mid-size,653,17,2.60%,222,0
+"Charleston, SC",Mid-size,830,14,1.69%,222,0
+"Chattanooga, TN",Mid-size,1058,28,2.65%,222,0
+"Des Moines, IA",Mid-size,615,20,3.25%,222,0
+"Fargo, ND",Mid-size,526,10,1.90%,222,0
+"Grand Rapids, MI",Mid-size,812,7,0.86%,222,0
+"Greensboro, NC",Mid-size,1380,45,3.26%,222,0
+"Huntsville, AL",Mid-size,1030,38,3.69%,222,0
+"Knoxville, TN",Mid-size,1019,28,2.75%,222,0
+"Little Rock, AR",Mid-size,968,29,3.00%,222,0
+"Omaha, NE",Mid-size,711,10,1.41%,222,0
+"Providence, RI",Mid-size,757,19,2.51%,222,0
+"Reno, NV",Mid-size,482,6,1.24%,222,0
+"Spokane, WA",Mid-size,593,9,1.52%,222,0
+"Syracuse, NY",Mid-size,546,14,2.56%,222,0
+"Tulsa, OK",Mid-size,909,19,2.09%,222,0
+"Wichita, KS",Mid-size,622,9,1.45%,222,0
+"Worcester, MA",Mid-size,630,15,2.38%,222,0
+"Albany, GA",Small,490,11,2.24%,108,0
+"Auburn, AL",Small,624,22,3.53%,108,0
+"Bismarck, ND",Small,308,6,1.95%,108,0
+"Bloomington, IN",Small,496,16,3.23%,108,0
+"Bowling Green, KY",Small,442,19,4.30%,108,0
+"Burlington, VT",Small,190,3,1.58%,108,0
+"Cheyenne, WY",Small,319,12,3.76%,108,0
+"Concord, NH",Small,289,3,1.04%,108,0
+"Cookeville, TN",Small,545,17,3.12%,108,0
+"Dothan, AL",Small,405,8,1.98%,108,0
+"Dover, DE",Small,371,5,1.35%,108,0
+"Florence, AL",Small,530,7,1.32%,108,0
+"Hagerstown, MD",Small,426,11,2.58%,108,0
+"Hattiesburg, MS",Small,501,17,3.39%,108,0
+"Johnson City, TN",Small,646,20,3.10%,108,0
+"Lewiston, ME",Small,440,12,2.73%,108,0
+"Lima, OH",Small,443,7,1.58%,108,0
+"Mansfield, OH",Small,471,20,4.25%,108,0
+"Meridian, MS",Small,520,10,1.92%,108,0
+"Missoula, MT",Small,232,2,0.86%,108,0
+"Morgantown, WV",Small,432,18,4.17%,108,0
+"Muncie, IN",Small,497,16,3.22%,108,0
+"Owensboro, KY",Small,503,11,2.19%,108,0
+"Paducah, KY",Small,422,18,4.27%,108,0
+"Rapid City, SD",Small,254,3,1.18%,108,0
+"Rome, GA",Small,491,20,4.07%,108,0
+"Springfield, OH",Small,496,20,4.03%,108,0
+"Terre Haute, IN",Small,443,7,1.58%,108,0
+"Tupelo, MS",Small,462,10,2.16%,108,0
+"Valdosta, GA",Small,446,5,1.12%,108,0

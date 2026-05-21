@@ -15,7 +15,7 @@ With the best intentions, the church today has been drawing people to a poisonou
 
 To be fair, I do not criticize a church for having a Facebook page or an Instagram account. However, when a church _prioritizes_ social media as the _primary_ method of communication and engagement, we are doing a disservice to the community that we are called to serve. It's an easy decision to make - Facebook has free tools that allow any number of users to become administrators able to create events and share them with the audience. Things like access control, web design, scheduling and publishing are handled by the sixth largest company in the world by market cap. [^market-cap] This kind of convenience cannot be overstated. Meanwhile, keeping a website up-to-date for church communications often includes complicated interfaces, cost for additional users, and design options that aren't intuitive for the average user. The barriers are often just too high, especially for small churches without dedicated technical volunteers or staff members.
 
-
+In my own research, I was able to find over 1,000 churches whose _primary website_ was their facebook account. 
 
 
 The Surgeon General of the United States published an advisory in 2023 that found that "Children and adolescents who spend more than 3 hours a day on social media face double the risk of mental health problems including experiencing symptoms of depression and anxiety." [^hhs]

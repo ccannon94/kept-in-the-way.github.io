@@ -1,0 +1,81 @@
+name: Stamp new post dates on merge
+
+# When a new post lands on main (via PR merge or direct push), stamp it with the
+# merge-time date in US Eastern time:
+#   * rename its YYYY-MM-DD- filename prefix to today's Eastern date
+#   * set its front-matter `date:` line to the current Eastern date/time
+#
+# The corrected file is committed back to main using GITHUB_TOKEN. Pushes made
+# with GITHUB_TOKEN do not trigger workflow runs, so this never loops; we also
+# only react to *added* posts (renames/edits are ignored) as a second guard.
+#
+# REQUIRES: Settings -> Actions -> General -> Workflow permissions set to allow
+# write access (the `permissions: contents: write` block below requests it).
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  stamp-post-dates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so we can diff the pushed commit range
+
+      - name: Find newly added posts
+        id: new_posts
+        run: |
+          before="${{ github.event.before }}"
+          after="${{ github.sha }}"
+
+          # First push to a brand-new branch: `before` is all zeros, so there is
+          # no prior commit to diff against. Fall back to the empty tree.
+          if [ "$before" = "0000000000000000000000000000000000000000" ]; then
+            before="$(git hash-object -t tree /dev/null)"
+          fi
+
+          # Added (A) markdown files under _posts/. Renames (R) and edits (M) are
+          # excluded, so the commit this workflow makes can never re-trigger it.
+          mapfile -t files < <(
+            git diff --name-only --diff-filter=A "$before" "$after" -- _posts/ \
+              | grep -E '\.(md|markdown)$' || true
+          )
+
+          {
+            echo "files<<EOF"
+            printf '%s\n' "${files[@]}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+          if [ "${#files[@]}" -eq 0 ] || [ -z "${files[0]}" ]; then
+            echo "count=0" >> "$GITHUB_OUTPUT"
+            echo "No new posts in this push."
+          else
+            echo "count=${#files[@]}" >> "$GITHUB_OUTPUT"
+            printf 'New post: %s\n' "${files[@]}"
+          fi
+
+      - name: Stamp post dates
+        if: steps.new_posts.outputs.count != '0'
+        run: |
+          mapfile -t files <<< "${{ steps.new_posts.outputs.files }}"
+          bash .github/scripts/update-post-dates.sh "${files[@]}"
+
+      - name: Commit and push changes
+        if: steps.new_posts.outputs.count != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to commit; posts were already current."
+          else
+            git commit -m "chore: stamp new post date to merge date [skip ci]"
+            git push origin HEAD:main
+          fi

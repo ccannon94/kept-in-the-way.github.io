@@ -14,6 +14,9 @@ Consider a man wandering in the desert. At long last, he sees a person in the di
 With the best intentions, the church today has been drawing people to a poisonous well in the interest of meeting people where they are. Meta, the technology company whose portfolio includes social media giants Facebook and Instagram, boasts nearly 3.56 "Daily Active People". [^fb-users] With nearly half the world's population actively engaged on a platform, combined with the fact that a Facebook page is free and simple to create and manage, its easy to understand why most churches have a Facebook page to communicate with members and the broader community.
 
 <!-- Add info here about _why_ social media is harmful. -->
+## What is the Big Deal?
+
+After all, do we _really_ have anything to fear from social media sites? The tools they provide make it easier than ever to share our message with the widest possible audience, shouldn't we just be grateful? That would be true, if not for the very real harm being done to individuals by spending too much time on social media. One 2019 study using three large datasets found that heavy users of social media are 48% to 171% more likley to report unhappiness or low well-being in comparison to light users of social media.[^twenge-three-studies]
 
 <!-- We will probably be able to establish that excessive screen time overall, not just social media is harmful. Once we make that link, we should demonstrate that social media is specifically designed to _trap_ users once it is opened, making it more dangerous than a website. -->
 
@@ -25,6 +28,8 @@ In my own research, I was able to find over 1,000 churches whose _primary websit
 The Surgeon General of the United States published an advisory in 2023 that found that "Children and adolescents who spend more than 3 hours a day on social media face double the risk of mental health problems including experiencing symptoms of depression and anxiety." [^hhs]
 
 [^fb-users]: Meta Investor Relations, Meta Reports First Quarter 2026 Results. https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-First-Quarter-2026-Results/default.aspx
+
+[^twenge-three-studies]: Media Use Is Linked to Lower Psychological Well-Being: Evidence from Three Datasets, Twengen and Campbell, Psychiatric Quarterly. https://link.springer.com/article/10.1007/s11126-019-09630-7
 
 [^market-cap]: Investopedia, Biggest Companies in the World by Market Cap. https://www.investopedia.com/biggest-companies-in-the-world-by-market-cap-5212784
 

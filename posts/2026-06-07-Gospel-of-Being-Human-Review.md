@@ -1,7 +1,6 @@
 ---
-layout: post
 title: "The Gospel of Being Human by Marty Solomon and Reed Dent"
-date: 2026-04-06 01:00:00 -0400
+date: 2026-04-06T01:00:00-04:00
 tags: book-review bema-discipleship
 ---
 

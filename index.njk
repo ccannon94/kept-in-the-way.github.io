@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+---
+
+<section class="hero">
+  <h1>Kept in the Way</h1>
+</section>
+
+<section class="intro">
+  <p>This blog is intended to be an encouragement for Christians who seek to be kept in the Way of Jesus by the guidance of the Holy Spirit.</p>
+
+  <blockquote>
+    Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, "This is the way; walk in it."
+  </blockquote>
+
+  <p class="citation">Isaiah 30:21-22</p>
+</section>
+
+<section class="recent-posts">
+  <h2>Recent Posts</h2>
+
+  {% if collections.posts.length %}
+    <ul class="post-list">
+      {% for post in collections.posts %}
+        <li>
+          <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+          <p class="post-meta">{{ post.date | longDate }}</p>
+          <p>{{ post.templateContent | excerpt(30) }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="empty-state">No posts yet.</p>
+  {% endif %}
+</section>

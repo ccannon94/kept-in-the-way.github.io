@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site.description }}">
+    <title>{% if title %}{{ title }} | {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="/assets/site.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrapper header-inner">
+        <a class="site-title" href="/">{{ site.title }}</a>
+        <nav aria-label="Main navigation">
+          <a href="/tereo-privacy/">Tereo Privacy Policy</a>
+          <a href="/tereo-support/">Tereo Support</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-content">
+      {{ content | safe }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrapper">
+        <h2>{{ site.title }}</h2>
+        <p><a href="/">{{ site.title }}</a></p>
+        <p>{{ site.description }}</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "kept-in-the-way",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kept in the Way blog, built with Eleventy",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.6",
+    "wrangler": "4.125.0"
+  }
+}

@@ -1,7 +1,21 @@
 # Kept in the Way
 
-This blog is intended to be an encouragement for Christians who seek to be kept in the Way of Jesus by the guidance of the Holy Spirit.
+The Kept in the Way blog is built with [Eleventy](https://www.11ty.dev/) and deployed to Cloudflare Pages.
 
-> Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, “This is the way; walk in it.” 
+## Local development
 
-Isaiah 30:21-22
+```sh
+npm install
+npm start
+```
+
+Create posts in `posts/` with YAML front matter containing `title`, `date`, and optional content tags. The filename should start with `YYYY-MM-DD-`; the GitHub action updates that prefix and the front-matter date when a new post reaches `main`.
+
+## Production build
+
+```sh
+npm ci
+npm run build
+```
+
+Eleventy writes the deployable site to `_site/`. Cloudflare Pages uses `npm run build` as its build command and `_site` as its output directory.

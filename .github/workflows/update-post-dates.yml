@@ -1,13 +1,14 @@
 name: Stamp new post dates on merge
 
-# When a new post lands on main (via PR merge or direct push), stamp it with the
-# merge-time date in US Eastern time:
+# When a post is introduced to main for the first time (via PR merge or direct
+# push), stamp it with that first-arrival time in US Eastern time:
 #   * rename its YYYY-MM-DD- filename prefix to today's Eastern date
 #   * set its front-matter `date:` line to the current Eastern date/time
 #
 # The corrected file is committed back to main using GITHUB_TOKEN. Pushes made
 # with GITHUB_TOKEN do not trigger workflow runs, so this never loops; we also
-# only react to *added* posts (renames/edits are ignored) as a second guard.
+# only react to posts whose date-independent slug has never appeared in main's
+# earlier history. Edits, moves, renames, and reintroductions are ignored.
 #
 # REQUIRES: Settings -> Actions -> General -> Workflow permissions set to allow
 # write access (the `permissions: contents: write` block below requests it).
@@ -34,20 +35,8 @@ jobs:
           before="${{ github.event.before }}"
           after="${{ github.sha }}"
 
-          # First push to a brand-new branch: `before` is all zeros, so there is
-          # no prior commit to diff against. Fall back to the empty tree.
-          if [ "$before" = "0000000000000000000000000000000000000000" ]; then
-            before="$(git hash-object -t tree /dev/null)"
-          fi
-
-          # Added (A) markdown files under posts/. Enable rename detection
-          # explicitly because Actions runners may otherwise report a move from
-          # another directory as an addition. Renames (R) and edits (M) are
-          # excluded, so migrations and this workflow's own commit are ignored.
           mapfile -t files < <(
-            git diff --find-renames=20% --name-only --diff-filter=A \
-              "$before" "$after" \
-              | grep -E '^posts/.*\.(md|markdown)$' || true
+            bash .github/scripts/find-new-posts.sh "$before" "$after"
           )
 
           {

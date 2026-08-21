@@ -40,11 +40,14 @@ jobs:
             before="$(git hash-object -t tree /dev/null)"
           fi
 
-          # Added (A) markdown files under posts/. Renames (R) and edits (M) are
-          # excluded, so the commit this workflow makes can never re-trigger it.
+          # Added (A) markdown files under posts/. Enable rename detection
+          # explicitly because Actions runners may otherwise report a move from
+          # another directory as an addition. Renames (R) and edits (M) are
+          # excluded, so migrations and this workflow's own commit are ignored.
           mapfile -t files < <(
-            git diff --name-only --diff-filter=A "$before" "$after" -- posts/ \
-              | grep -E '\.(md|markdown)$' || true
+            git diff --find-renames=20% --name-only --diff-filter=A \
+              "$before" "$after" \
+              | grep -E '^posts/.*\.(md|markdown)$' || true
           )
 
           {

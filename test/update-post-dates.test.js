@@ -49,3 +49,67 @@ test("the date action renames and stamps a new Eleventy post", () => {
     fs.rmSync(repository, { force: true, recursive: true });
   }
 });
+
+test("post-directory migrations are not treated as new posts", () => {
+  const repository = fs.mkdtempSync(path.join(os.tmpdir(), "post-move-test-"));
+
+  try {
+    execFileSync("git", ["init", "--quiet"], { cwd: repository });
+    execFileSync("git", ["config", "user.name", "Test"], { cwd: repository });
+    execFileSync("git", ["config", "user.email", "test@example.com"], {
+      cwd: repository,
+    });
+    execFileSync("git", ["config", "commit.gpgsign", "false"], {
+      cwd: repository,
+    });
+    fs.mkdirSync(path.join(repository, "_posts"));
+
+    const oldPath = "_posts/2020-01-01-Sample.md";
+    const newPath = "posts/2020-01-01-Sample.md";
+    fs.writeFileSync(
+      path.join(repository, oldPath),
+      [
+        "---",
+        'title: "Sample"',
+        "date: 2020-01-01T00:00:00-05:00",
+        "layout: post",
+        "---",
+        "",
+        "Post body.",
+        "",
+      ].join("\n"),
+    );
+    execFileSync("git", ["add", "--", oldPath], { cwd: repository });
+    execFileSync("git", ["commit", "--quiet", "-m", "add post"], {
+      cwd: repository,
+    });
+
+    fs.mkdirSync(path.join(repository, "posts"));
+    fs.renameSync(path.join(repository, oldPath), path.join(repository, newPath));
+    const migrated = fs
+      .readFileSync(path.join(repository, newPath), "utf8")
+      .replace("layout: post\n", "");
+    fs.writeFileSync(path.join(repository, newPath), migrated);
+    execFileSync("git", ["add", "--", oldPath, newPath], { cwd: repository });
+    execFileSync("git", ["commit", "--quiet", "-m", "move post"], {
+      cwd: repository,
+    });
+
+    const additions = execFileSync(
+      "git",
+      [
+        "diff",
+        "--find-renames=20%",
+        "--name-only",
+        "--diff-filter=A",
+        "HEAD~1",
+        "HEAD",
+      ],
+      { cwd: repository, encoding: "utf8" },
+    ).trim();
+
+    assert.equal(additions, "");
+  } finally {
+    fs.rmSync(repository, { force: true, recursive: true });
+  }
+});

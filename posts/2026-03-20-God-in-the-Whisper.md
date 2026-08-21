@@ -1,6 +1,6 @@
 ---
 title: "God in the Whisper"
-date: 2026-08-20T20:00:06-04:00
+date: 2026-03-20T23:35:00-04:00
 tags: old-testament kings prophets 1kings19 1kings19:11 1kings19:12 1kings19:13
 ---
 

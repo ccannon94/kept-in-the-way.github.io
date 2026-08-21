@@ -6,6 +6,7 @@ const path = require("node:path");
 const test = require("node:test");
 
 const script = path.resolve(".github/scripts/update-post-dates.sh");
+const detector = path.resolve(".github/scripts/find-new-posts.sh");
 
 test("the date action renames and stamps a new Eleventy post", () => {
   const repository = fs.mkdtempSync(path.join(os.tmpdir(), "post-date-test-"));
@@ -50,7 +51,7 @@ test("the date action renames and stamps a new Eleventy post", () => {
   }
 });
 
-test("post-directory migrations are not treated as new posts", () => {
+test("only a post's first introduction is treated as new", () => {
   const repository = fs.mkdtempSync(path.join(os.tmpdir(), "post-move-test-"));
 
   try {
@@ -83,6 +84,10 @@ test("post-directory migrations are not treated as new posts", () => {
     execFileSync("git", ["commit", "--quiet", "-m", "add post"], {
       cwd: repository,
     });
+    const beforeMigration = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: repository,
+      encoding: "utf8",
+    }).trim();
 
     fs.mkdirSync(path.join(repository, "posts"));
     fs.renameSync(path.join(repository, oldPath), path.join(repository, newPath));
@@ -94,21 +99,85 @@ test("post-directory migrations are not treated as new posts", () => {
     execFileSync("git", ["commit", "--quiet", "-m", "move post"], {
       cwd: repository,
     });
+    const afterMigration = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: repository,
+      encoding: "utf8",
+    }).trim();
 
-    const additions = execFileSync(
-      "git",
+    const migratedPosts = execFileSync(
+      "bash",
+      [detector, beforeMigration, afterMigration],
+      { cwd: repository, encoding: "utf8" },
+    ).trim();
+    assert.equal(migratedPosts, "");
+
+    const firstPath = "posts/2020-01-01-Actually-New.md";
+    fs.writeFileSync(
+      path.join(repository, firstPath),
       [
-        "diff",
-        "--find-renames=20%",
-        "--name-only",
-        "--diff-filter=A",
-        "HEAD~1",
-        "HEAD",
-      ],
+        "---",
+        'title: "Actually New"',
+        "date: 2020-01-01T00:00:00-05:00",
+        "---",
+        "",
+        "New post body.",
+        "",
+      ].join("\n"),
+    );
+    execFileSync("git", ["add", "--", firstPath], { cwd: repository });
+    execFileSync("git", ["commit", "--quiet", "-m", "add new post"], {
+      cwd: repository,
+    });
+    const afterFirstIntroduction = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: repository,
+      encoding: "utf8",
+    }).trim();
+
+    const firstIntroduction = execFileSync(
+      "bash",
+      [detector, afterMigration, afterFirstIntroduction],
+      { cwd: repository, encoding: "utf8" },
+    ).trim();
+    assert.equal(firstIntroduction, firstPath);
+
+    execFileSync("git", ["rm", "--quiet", "--", firstPath], { cwd: repository });
+    execFileSync("git", ["commit", "--quiet", "-m", "remove post"], {
+      cwd: repository,
+    });
+    const beforeReintroduction = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: repository,
+      encoding: "utf8",
+    }).trim();
+
+    const reintroducedPath = "posts/2021-02-03-Actually-New.md";
+    fs.writeFileSync(
+      path.join(repository, reintroducedPath),
+      [
+        "---",
+        'title: "Actually New"',
+        "date: 2021-02-03T00:00:00-05:00",
+        "---",
+        "",
+        "Reintroduced post body.",
+        "",
+      ].join("\n"),
+    );
+    execFileSync("git", ["add", "--", reintroducedPath], { cwd: repository });
+    execFileSync("git", ["commit", "--quiet", "-m", "reintroduce post"], {
+      cwd: repository,
+    });
+    const afterReintroduction = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: repository,
+      encoding: "utf8",
+    }).trim();
+
+    const reintroducedPosts = execFileSync(
+      "bash",
+      [detector, beforeReintroduction, afterReintroduction],
       { cwd: repository, encoding: "utf8" },
     ).trim();
 
-    assert.equal(additions, "");
+    assert.equal(reintroducedPosts, "");
   } finally {
     fs.rmSync(repository, { force: true, recursive: true });
   }

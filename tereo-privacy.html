@@ -6,7 +6,7 @@ permalink: /tereo-privacy/
 
 <div style="max-width: 760px; margin: 0 auto; padding: 48px 20px 64px; line-height: 1.65; color: #333;">
   <h1 style="font-size: 2.4em; font-weight: 300; margin: 0 0 8px;">Tereo Privacy Policy</h1>
-  <p style="margin: 0 0 32px; color: #666;">Effective June 18, 2026</p>
+  <p style="margin: 0 0 32px; color: #666;">Effective November 10, 2026</p>
 
   <p>
     Tereo is a private prayer app. Prayer intentions, prayer notes, prayer lists,
@@ -21,8 +21,17 @@ permalink: /tereo-privacy/
     <li><strong>Account information:</strong> your email address, account identifier, and authentication session information.</li>
     <li><strong>Prayer content:</strong> prayer titles, optional descriptions, prayer lists, prayer notes, prayer status, and related timestamps.</li>
     <li><strong>Prayer session information:</strong> private session history, session status, included prayers, prayer-session timestamps, and related recap-ready facts.</li>
-    <li><strong>Technical information needed for app functionality:</strong> information required to authenticate requests, sync data, maintain security, and keep the service available.</li>
+    <li><strong>Technical information needed for app functionality:</strong> network IP addresses, approximate city/country derived from network requests, account and authentication events, SDK/user-agent information, request results and errors, connection duration, transfer sizes, and operation counts retained by our authentication, database, and sync providers for security and reliability.</li>
   </ul>
+
+  <p>
+    PowerSync also uses an identifier generated for each local database/client.
+    It persists with that database and can change when the cache is recreated;
+    it is not an advertising identifier or an immutable hardware ID. Technical
+    information can be associated with your account. Tereo does not request device
+    location permission or collect GPS location; approximate network location is
+    distinct from precise device location.
+  </p>
 
   <h2 style="font-size: 1.35em; margin-top: 32px;">How We Use Information</h2>
   <p>We use your information to:</p>
@@ -50,21 +59,39 @@ permalink: /tereo-privacy/
 
   <h2 style="font-size: 1.35em; margin-top: 32px;">Private Data And Device Storage</h2>
   <p>
-    Tereo stores private app data in an account-scoped local database on your
-    device so the app can work quickly and support local-first use. Synced data is
-    scoped to your authenticated account. When you sign out, Tereo removes private
-    cached content for that account from the active device.
+    Tereo stores private app data in an encrypted, account-scoped local database
+    with a device-local encryption key in Keychain. Offline changes can remain on
+    the device until they sync. Signing out checks for pending changes; follow the
+    app's prompt to sync them or explicitly discard them before removing that
+    account's cache from the active device. A sign-out or deletion on one device
+    does not establish immediate erasure of a disconnected device's local files.
   </p>
 
   <h2 style="font-size: 1.35em; margin-top: 32px;">Data Retention And Deletion</h2>
   <p>
     We keep your Tereo account data for as long as your account is active or as
-    long as needed to provide the app's private sync features. You can request
-    deletion of your Tereo account and app data by emailing
+    long as needed to provide the app's private sync features, unless you delete
+    records sooner. You can initiate account deletion in Settings or email
     <a href="mailto:contact@keptintheway.org">contact@keptintheway.org</a>.
-    After verifying the request, we will delete the account data we control
+    Account deletion is handled through a manual support process after
+    verification; submitting a request does not itself delete the account.
+    After verifying the request, we will delete the active account data we control
     unless we need to retain limited information for legal, security, or abuse
     prevention reasons.
+  </p>
+
+  <p>
+    Our current Supabase Free service exposes API/database logs for one day and
+    Auth audit logs for one hour. Our current PowerSync Free instance-log window
+    is 24 hours. These are provider log-access windows, not a promise that every
+    provider copy is erased at that time. Authentication/session records, sync
+    operation history, and provider operational recovery/security copies have
+    separate lifecycles. The current Supabase plan has no scheduled backups,
+    point-in-time recovery, or log drains configured. PowerSync compacts operation
+    history automatically; deletion of active data does not mean immediate
+    removal from every history or provider-held recovery copy. We do not promise
+    an unverified expiry period for those copies. Contact us for the current status
+    of your deletion request and any applicable retention limit.
   </p>
 
   <h2 style="font-size: 1.35em; margin-top: 32px;">Children</h2>
